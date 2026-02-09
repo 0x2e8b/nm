@@ -7,7 +7,7 @@ use crate::data::model::{DnsCache, NetworkSnapshot, Process, SortField};
 use crate::data::nettop;
 use crate::data::procinfo;
 
-const BANDWIDTH_HISTORY_LEN: usize = 60;
+const BANDWIDTH_HISTORY_LEN: usize = 300;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ActiveTab {

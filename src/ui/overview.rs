@@ -14,7 +14,6 @@ pub fn render(f: &mut Frame, area: Rect, app: &App) {
         .constraints([
             Constraint::Length(5), // Stats summary
             Constraint::Min(8),   // Top processes
-            Constraint::Length(5), // Sparkline
         ])
         .split(area);
 
@@ -93,12 +92,10 @@ pub fn render(f: &mut Frame, area: Rect, app: &App) {
         .title(" Top Processes ");
     let top = Paragraph::new(top_procs).block(top_block);
     f.render_widget(top, chunks[1]);
-
-    // Bandwidth sparkline
-    render_sparkline(f, chunks[2], app);
 }
 
-pub fn render_sparkline(f: &mut Frame, area: Rect, app: &App) {
+/// Render the sparkline shown in the footer area, filling full width
+pub fn render_footer_sparkline(f: &mut Frame, area: Rect, app: &App) {
     let block = Block::default()
         .borders(Borders::ALL)
         .border_style(Style::default().fg(theme::BORDER_COLOR))
@@ -112,21 +109,6 @@ pub fn render_sparkline(f: &mut Frame, area: Rect, app: &App) {
 
     let sparkline = Sparkline::default()
         .block(block)
-        .data(&data)
-        .style(Style::default().fg(theme::DOWNLOAD_COLOR));
-
-    f.render_widget(sparkline, area);
-}
-
-/// Render the mini sparkline shown in the footer area
-pub fn render_footer_sparkline(f: &mut Frame, area: Rect, app: &App) {
-    let data: Vec<u64> = app
-        .bandwidth_history
-        .iter()
-        .map(|&v| v as u64)
-        .collect();
-
-    let sparkline = Sparkline::default()
         .data(&data)
         .style(Style::default().fg(theme::DOWNLOAD_COLOR));
 
