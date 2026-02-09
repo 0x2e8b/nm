@@ -1,0 +1,13 @@
+[package]
+name = "nm"
+version = "0.1.0"
+edition = "2021"
+description = "Network Monitor TUI - lightweight terminal network traffic viewer for macOS"
+
+[dependencies]
+ratatui = "0.30"
+crossterm = "0.28"
+tokio = { version = "1", features = ["full"] }
+libproc = "0.14"
+dns-lookup = "2"
+clap = { version = "4", features = ["derive"] }
