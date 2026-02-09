@@ -4,7 +4,9 @@ Lightweight terminal-based network traffic monitor for macOS. Displays real-time
 
 ![Rust](https://img.shields.io/badge/Rust-2021-orange) ![macOS](https://img.shields.io/badge/platform-macOS-blue)
 
-<img width="756" height="836" alt="image" src="https://github.com/user-attachments/assets/d4b4a7e0-fcc1-40e0-91d5-fe473ec35a4b" />
+<img width="753" height="823" alt="image" src="https://github.com/user-attachments/assets/ec1418ea-93ba-4c92-b9b1-db05c404ea50" />
+
+
 
 ## Features
 
