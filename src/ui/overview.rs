@@ -101,11 +101,26 @@ pub fn render_footer_sparkline(f: &mut Frame, area: Rect, app: &App) {
         .border_style(Style::default().fg(theme::BORDER_COLOR))
         .title(" Bandwidth ");
 
-    let data: Vec<u64> = app
-        .bandwidth_history
-        .iter()
-        .map(|&v| v as u64)
-        .collect();
+    // Inner width excluding borders
+    let inner_width = area.width.saturating_sub(2) as usize;
+
+    // Pad with leading zeros so the sparkline always fills the full width
+    let history_len = app.bandwidth_history.len();
+    let mut data: Vec<u64> = if history_len < inner_width {
+        let mut padded = vec![0u64; inner_width - history_len];
+        padded.extend(app.bandwidth_history.iter().map(|&v| v as u64));
+        padded
+    } else {
+        // Take only the most recent points that fit
+        app.bandwidth_history
+            .iter()
+            .skip(history_len - inner_width)
+            .map(|&v| v as u64)
+            .collect()
+    };
+
+    // Ensure we don't exceed the available width
+    data.truncate(inner_width);
 
     let sparkline = Sparkline::default()
         .block(block)
