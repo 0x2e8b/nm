@@ -26,7 +26,7 @@ Lightweight terminal-based network traffic monitor for macOS. Displays real-time
 ## Installation
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/0x2e8b/nm.git
 cd nm
 cargo build --release
 ```
